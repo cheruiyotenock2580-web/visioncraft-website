@@ -3,26 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VisionCraft</title>
+<title>VisionCraft — App Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-  body { font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; background:#0d1117; color:#e6edf3; }
-  header { padding:60px 20px; text-align:center; }
-  header h1 { font-size:2.5rem; margin-bottom:10px; }
-  header p { color:#9da7b3; font-size:1.1rem; }
-  .container { max-width:900px; margin:0 auto; padding:20px; }
-  footer { text-align:center; padding:30px; color:#7d8590; font-size:0.9rem; }
-  a { color:#58a6ff; }
+  :root{
+    --bg:#0b0e14;
+    --panel:#12161f;
+    --line:#232a38;
+    --text:#eef1f6;
+    --muted:#8b93a7;
+    --cyan:#4cc9f0;
+    --amber:#ffb454;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+
+  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;}
+  .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-0.02em;display:flex;align-items:center;gap:10px;}
+  .logo-mark{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--cyan),var(--amber));display:inline-block;}
+  nav a{color:var(--muted);text-decoration:none;font-size:0.92rem;margin-left:28px;}
+  nav a:hover{color:var(--text);}
+
+  header.hero{padding:80px 0 60px;}
+  .eyebrow{font-family:'JetBrains Mono',monospace;color:var(--cyan);font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:18px;}
+  h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.08;font-weight:700;letter-spacing:-0.02em;margin:0 0 20px;max-width:760px;}
+  h1 span{color:var(--amber);}
+  .sub{color:var(--muted);font-size:1.1rem;max-width:520px;line-height:1.6;margin-bottom:0;}
+
+  section.apps{padding:40px 0 80px;}
+  .section-label{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:22px;display:flex;align-items:center;gap:10px;}
+  .section-label::after{content:"";flex:1;height:1px;background:var(--line);}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;}
+  .app-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 16px;text-align:left;transition:transform .18s ease, border-color .18s ease;}
+  .app-card:hover{transform:translateY(-4px);border-color:var(--cyan);}
+  .app-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .app-name{font-weight:600;font-size:0.95rem;margin-bottom:4px;}
+  .app-desc{color:var(--muted);font-size:0.82rem;line-height:1.4;}
+
+  section.about{padding:20px 0 80px;border-top:1px solid var(--line);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;padding-top:50px;}
+  .about-grid p{color:var(--muted);line-height:1.7;font-size:0.98rem;}
+  .stat{display:flex;gap:14px;margin-bottom:18px;}
+  .stat svg{flex-shrink:0;margin-top:2px;}
+  .stat-text b{display:block;font-family:'Space Grotesk',sans-serif;}
+  .stat-text span{color:var(--muted);font-size:0.85rem;}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer a{color:var(--muted);text-decoration:none;font-size:0.85rem;}
+  footer a:hover{color:var(--text);}
+  .copyright{color:var(--muted);font-size:0.85rem;font-family:'JetBrains Mono',monospace;}
+
+  @media(max-width:700px){.about-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
-  <header>
-    <h1>VisionCraft</h1>
-    <p>We build mobile apps focused on entertainment, sports, and productivity.</p>
-  </header>
-  <div class="container">
-    <p>VisionCraft is the developer organisation behind a growing portfolio of Android apps available on Google Play.</p>
-    <p><a href="privacy.html">Privacy Policy</a></p>
+  <div class="wrap">
+    <nav>
+      <div class="logo"><span class="logo-mark"></span>VisionCraft</div>
+      <div>
+        <a href="#apps">What we build</a>
+        <a href="#about">About</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="eyebrow">/// android developer studio</div>
+      <h1>We build apps people <span>actually open twice.</span></h1>
+      <p class="sub">VisionCraft designs and maintains a growing portfolio of Android apps, published on Google Play.</p>
+    </header>
+
+    <section class="apps" id="apps">
+      <div class="section-label">What we build</div>
+      <div class="grid">
+        <div class="app-card">
+          <div class="app-icon" style="background:var(--cyan);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="#0b0e14" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="app-name">Entertainment</div>
+          <div class="app-desc">Streaming, sports and media apps built for speed.</div>
+        </div>
+        <div class="app-card">
+          <div class="app-icon" style="background:var(--amber);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 11l3 3L22 4M21 12v6a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h11" stroke="#0b0e14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="app-name">Productivity</div>
+          <div class="app-desc">Everyday tools that stay out of your way.</div>
+        </div>
+        <div class="app-card">
+          <div class="app-icon" style="background:#7ee787;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#0b0e14" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#0b0e14" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="app-name">Utilities</div>
+          <div class="app-desc">Focused, single-purpose apps done well.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="section-label">About VisionCraft</div>
+      <div class="about-grid">
+        <div>
+          <p>VisionCraft is an independent Android app studio. We design lightweight, fast-loading apps across entertainment, productivity, and everyday utility categories — built to Google Play's quality and safety standards from day one.</p>
+        </div>
+        <div>
+          <div class="stat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#4cc9f0" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#4cc9f0" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <div class="stat-text"><b>Growing portfolio</b><span>New apps added regularly</span></div>
+          </div>
+          <div class="stat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z" stroke="#ffb454" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <div class="stat-text"><b>Privacy-first</b><span>Clear data practices for every app</span></div>
+          </div>
+          <div class="stat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#7ee787" stroke-width="1.6"/><path d="M8 12l3 3 5-6" stroke="#7ee787" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="stat-text"><b>Play Store compliant</b><span>Built to current policy standards</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="copyright">&copy; 2026 VisionCraft</div>
+      <div>
+        <a href="privacy.html">Privacy Policy</a>
+        &nbsp;&middot;&nbsp;
+        <a href="mailto:support@visioncraft.life">support@visioncraft.life</a>
+      </div>
+    </footer>
   </div>
-  <footer>&copy; 2026 VisionCraft. All rights reserved.</footer>
 </body>
 </html>
